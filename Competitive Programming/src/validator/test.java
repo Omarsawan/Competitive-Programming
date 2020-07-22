@@ -66,7 +66,8 @@ public class test {
 		}
 	}
 	public static void main(String[] args) throws Exception {
-		testCases(5);
+		int times=5;
+		testCases(times);
 	}
 
 }
