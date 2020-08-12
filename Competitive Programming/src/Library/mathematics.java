@@ -107,27 +107,30 @@ public class mathematics {
 	}
 	
 	
-	static int[][] matMul(int[][] A, int[][] B, int p, int q, int r)	//C(p x r) = A(p x q) x (q x r) -- O(p x q x r)
+	static long[][] matMul(long[][] A, long[][] B)	//C(p x r) = A(p x q) x (q x r) -- O(p x q x r)
 	{
-		int[][] C = new int[p][r];
+		int p=A.length,q=B.length,r=B[0].length;
+		long[][] C = new long[p][r];
 		for(int i = 0; i < p; ++i)
 			for(int j = 0; j < r; ++j)
-				for(int k = 0; k < q; ++k)
+				for(int k = 0; k < q; ++k) {
 					C[i][j] += A[i][k] * B[k][j];
+					C[i][j]%=mod;
+				}
 		return C;
 	}
 	
-	static int[][] matPow(int[][] base, int p)
+	static long[][] matPow(long[][] base, int p)
 	{
 		int n = base.length;
-		int[][] ans = new int[n][n];
+		long[][] ans = new long[n][n];
 		for(int i = 0; i < n; i++)
 			ans[i][i] = 1;
 		while(p != 0)
 		{
 			if((p & 1) == 1)
-				ans = matMul(ans, base, n, n, n);
-			base = matMul(base, base, n, n, n);
+				ans = matMul(ans, base);
+			base = matMul(base, base);
 			p >>= 1;
 		}
 		

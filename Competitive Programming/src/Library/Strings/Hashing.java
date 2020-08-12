@@ -17,8 +17,8 @@ public class Hashing{
 			powerofP[i]=(powerofP[i-1]*prime)%mod;
 			invpofp[i]=fastpow(powerofP[i], mod-2,mod);
 		}
-		
-		long p=1,p2=1;
+		hashIn=new long[n+1];
+		long p=1;
 		for(int i=1;i<=n;i++) {
 			hashIn[i]=(p*(in[i-1]-'a'+1))%mod;
 			hashIn[i]=(hashIn[i]+hashIn[i-1])%mod;
