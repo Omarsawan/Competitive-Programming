@@ -46,10 +46,15 @@ public class dynamicSegmentTree {
 		}
 	}
 	void propagate(treeNode node, long l, long mid, long r,treeNode curLazy){
-		curLazy.left.val+=curLazy.val;
-		curLazy.right.val+=curLazy.val;
-		node.left.val+=(mid-l+1)*curLazy.val;
-		node.right.val+=(r-mid)*curLazy.val;
+		if(curLazy==null)return;
+		if(curLazy.left!=null)
+			curLazy.left.val+=curLazy.val;
+		if(curLazy.right!=null)
+			curLazy.right.val+=curLazy.val;
+		if(node.left!=null)
+			node.left.val+=(mid-l+1)*curLazy.val;
+		if(node.right!=null)
+			node.right.val+=(r-mid)*curLazy.val;
 		curLazy.val = 0;//the value that won't affect the required operation
 	}
 	
@@ -58,12 +63,13 @@ public class dynamicSegmentTree {
 		return query(root, minN, maxN, left, right,lazy);
 	}
 	long query(treeNode node,long curLeft,long curRight,long left,long right,treeNode curLazy) {
-		if(curLeft>right || curRight<left)return 0;//the value that won't affect the required operation
+		if(node==null || curLeft>right || curRight<left)return 0;//the value that won't affect the required operation
 		
 		if(curLeft>=left && curRight<=right) {
 			return node.val;
 		}
 		long mid=(curLeft+curRight)>>1;
+		
 		propagate(node, curLeft, mid, curRight,curLazy);
 		long q1=query(node.left, curLeft, mid, left, right,curLazy.left);
 		long q2=query(node.right, mid+1, curRight, left, right,curLazy.right);
