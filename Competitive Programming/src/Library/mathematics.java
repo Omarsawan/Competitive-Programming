@@ -2,6 +2,21 @@ package Library;
 import java.util.ArrayList;
 
 public class mathematics {
+	//distribute n elements into k partitions
+	static long ways(int n,int k) {
+		long ans=0;
+		for(int i=0;i<=k;i++) {
+			long cur=(ncr(k, i)*fastpow(k-i, n))%mod;
+			if((i&1)==1) {
+				ans=(ans-cur+mod)%mod;
+			}
+			else {
+				ans=(ans+cur)%mod;
+			}
+		}
+		ans=(ans*facInv[k])%mod;
+		return ans;
+	}
 	static int mod=(int)1e9+7;
 	static long fastpow(long n,long ti) {
 		 if (ti == 0) 

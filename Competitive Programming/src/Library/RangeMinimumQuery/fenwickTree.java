@@ -6,6 +6,7 @@ public class fenwickTree {
 	int INF=(int)2e9;
 	int n;
 	long[]ft;
+	int log;
 	fenwickTree(int z,boolean sum){
 		if(sum) {
 			//tree for sum
@@ -18,6 +19,10 @@ public class fenwickTree {
 			Arrays.fill(ft,-1);//smallest possible number
 			n=z;
 		}
+		while((1<<log)<=n) {
+			log++;
+		}
+		log--;
 	}
 	
 	void updateSum(int idx,int k) {
@@ -49,6 +54,18 @@ public class fenwickTree {
 			idx-=(idx&(-1*idx));
 		}
 		return max;
+	}
+	int findKth(int k) {
+		int cntLess=0;
+		int mask=0;
+		for(int l=log;l>=0 && cntLess<k;l--) {
+			if((mask|(1<<l))<=n && ft[(mask|(1<<l))]+cntLess<k) {
+				mask|=(1<<l);
+				cntLess+=ft[mask];
+			}
+		}
+		mask++;
+		return mask;
 	}
 	
 }
