@@ -17,10 +17,10 @@ public class segmentTree {
 	void build(int node,int left,int right) {
 		if(left==right) {
 			if(left>=arr.length) {
-				sTree[left]=0;//the value that won't affect the required operation
+				sTree[node]=0;//the value that won't affect the required operation
 			}
 			else {
-				sTree[left]=arr[left];
+				sTree[node]=arr[left];
 			}
 			return;
 		}
