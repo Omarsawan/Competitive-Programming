@@ -29,10 +29,10 @@ public class SuffixTrie2 {
 		int cur=root;
 		for(int i=0;i<s.length();i++) {
 			char c=s.charAt(i);
-			int nxt = next[cur][c-'0'];
+			int nxt = next[cur][c-'a'];
 			if(nxt == 0) {
 				int idx=makeNode();
-				nxt = next[cur][c - '0'] = idx;
+				nxt = next[cur][c - 'a'] = idx;
 			}
 			cur = nxt;
 		}
@@ -46,7 +46,7 @@ public class SuffixTrie2 {
 		int cur = root;
 		for(int i=0;i<s.length();i++) {
 			char c=s.charAt(i);
-			int nxt = next[cur][c-'0'];
+			int nxt = next[cur][c-'a'];
 			if(nxt == 0) {
 				return -1;
 			}
