@@ -40,10 +40,15 @@ public class mathematics {
 	static long[]fac,facInv;
 	static void preProcessNCR(int maxN) {
 		//compute factorial for all numbers smaller than or equal maxN
-		fac=new long[maxN];fac[0]=1;
+		fac=new long[maxN+1];fac[0]=1;
 		for(int i=1;i<fac.length;i++)fac[i]=(fac[i-1]*i)%mod;
+		
 		facInv=new long[fac.length];
-		for(int i=0;i<fac.length;i++)facInv[i]=modInverse(fac[i]);
+		facInv[fac.length-1]=modInverse(fac[fac.length-1]);//modInverse(n!)
+		for (int i=fac.length-2; i>=0; i--) {
+			//modInverse(x!)=(x+1)/(x+1)!=(x+1)*modInverse((x+1)!)
+			facInv[i]=(facInv[i+1]*(i+1))%mod;
+		}
 	}
 
 	public static long ncr(int n,int r) {
