@@ -2,7 +2,6 @@ package Library.DataStructures;
 
 import java.util.Random;
 
-
 //for reversing sub-array and query range sum
 public class treap
 {
@@ -163,5 +162,20 @@ public class treap
 		B.reversed^=1;
 		
 		curRoot=balance(meld(A, meld(B, C)));
+	}
+	
+	void rightCyclicShift(int l,int r) {//0-based indexed
+		Node rev1=split(curRoot, l);
+		Node A=rev1.left;
+		
+		Node rev2=split(rev1.right, r-l);
+		
+		Node C=rev2.left;
+		
+		Node rev3=split(rev2.right, 1);
+		
+		Node B=rev3.left,D=rev3.right;
+		
+		curRoot=balance(meld(A, meld(B, meld(C, D))));
 	}
 }
