@@ -1,4 +1,4 @@
-package Library.RangeMinimumQuery;
+package Library.DataStructures;
 
 public class SparseTable {
 	int[]log,min[],arr;

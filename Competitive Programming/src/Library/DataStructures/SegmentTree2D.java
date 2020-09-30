@@ -1,4 +1,4 @@
-package Library.RangeMinimumQuery;
+package Library.DataStructures;
 
 public class SegmentTree2D {
 	static int INF=(int)2e9;

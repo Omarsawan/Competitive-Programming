@@ -1,4 +1,4 @@
-package Library.RangeMinimumQuery;
+package Library.DataStructures;
 
 import java.util.Arrays;
 

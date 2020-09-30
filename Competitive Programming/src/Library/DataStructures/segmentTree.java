@@ -1,4 +1,4 @@
-package Library.RangeMinimumQuery;
+package Library.DataStructures;
 
 public class segmentTree {
 	int[]arr,sTree,lazy;
