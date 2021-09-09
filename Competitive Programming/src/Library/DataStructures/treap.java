@@ -35,6 +35,20 @@ public class treap
 	Node nill = new Node(Integer.MAX_VALUE, 0, null, null,0);
 	Node curRoot = nill;
 	
+	static int idx;
+	long[] curArr(){
+		long[]ans=new long[size()];
+		idx=0;
+		curArr(curRoot,ans);
+		return ans;
+	}
+	void curArr(Node root,long[]ans){
+		if(root==nill)return;
+		propagate(root);
+		curArr(root.left, ans);
+		ans[idx++]=root.val;
+		curArr(root.right, ans);
+	}
 	
 	Node meld(Node small,Node big) {
 		if(small==nill) {

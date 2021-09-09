@@ -52,6 +52,7 @@ public class mathematics {
 	}
 
 	public static long ncr(int n,int r) {
+		if(n<r)return 0;
 		long num=fac[n];
 		long den=(facInv[n-r]*facInv[r])%mod;
 		long ans=(num*den)%mod;
@@ -83,6 +84,17 @@ public class mathematics {
 		if (b == 0)
 			return a;
 		return gcd(b, a % b);
+	}
+    
+    static int x, y, d;
+	
+	void extendedEuclid(int a, int b)
+	{
+		if(b == 0) { x = 1; y = 0; d = a; return; }
+		extendedEuclid(b, a % b);
+		int x1 = y;
+		int y1 = x - a / b * y;
+		x = x1; y = y1;
 	}
     
     static int[]primes;
@@ -173,4 +185,13 @@ public class mathematics {
 			factors.add(N);				// for integers whose largest prime factor has a power of 1
 		return factors;
 	}
+	
+	
+	//sum all different triplets:
+	//sum (in[i]*in[j]*in[k]) for all 1<= i < j < k <=n is:
+	//((s1^3)-(3*s1*s2)+(2*s3))/6
+	//where s1 -> sum in[i] for all i
+	//where s2 -> sum in[i]^2 for all i
+	//where s3 -> sum in[i]^3 for all i
+	
 }

@@ -80,4 +80,30 @@ public class ShortestPath {
 			}
 		}
 	}
+	
+	static boolean bellmanFord(int S)		
+	{
+		int[] dist = new int[V];
+		Arrays.fill(dist, INF);
+		dist[S] = 0;
+		boolean modified = true;
+		for(int k = 0; modified && k < V - 1; ++k)
+		{
+			modified = false;
+			for(int u = 0; u < V; ++u)		// these two loops run in O(E) in total
+				for(Edge nxt: adjListW[u])	
+					if(dist[u] + nxt.cost < dist[nxt.node])
+					{
+						modified = true;
+						dist[nxt.node] = dist[u] + nxt.cost;
+					}
+		}
+		
+		boolean hasNegCycle = false;
+		for(int u = 0; u < V; ++u)
+			for(Edge nxt: adjListW[u])
+				if(dist[u] + nxt.cost < dist[nxt.node])
+					hasNegCycle = true;
+		return hasNegCycle;
+	}
 }
